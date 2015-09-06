@@ -38,6 +38,7 @@ sed -i /X-KDE-PluginInfo-Version/c\X-KDE-PluginInfo-Version=$version src/plasma-
 echo "Make tar.gz file"
 cp -R src plasma-containmentactions-customdesktopmenu
 tar -zcvf releases/plasma-containmentactions-customdesktopmenu-$version.tar.gz plasma-containmentactions-customdesktopmenu/*
+git add releases/plasma-containmentactions-customdesktopmenu-$version.tar.gz
 rm -R plasma-containmentactions-customdesktopmenu
 
 echo "Make last commit..."

@@ -43,11 +43,14 @@ echo ""
 echo ""
 echo "Install Ready !"
 echo ""
-echo "If new menu is not available, logout your session."
+echo "Right click to your desktop and select Desktop Settings."
+echo "On mouse actions, you can now choose Custom Desktop Menu."
+echo ""
+echo "If new menu is not available, logout/login your session."
 
 
-read -p "Logout now ? (Y/n)" choice
-case "$choice" in 
-  y|Y|'' ) qdbus-qt4 org.kde.ksmserver /KSMServer logout -1 0 3;;
-esac
+#read -p "Logout now ? (Y/n)" choice
+#case "$choice" in 
+#  y|Y|'' ) qdbus-qt4 org.kde.ksmserver /KSMServer logout -1 0 3;;
+#esac
 
