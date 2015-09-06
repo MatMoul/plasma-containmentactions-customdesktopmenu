@@ -1,0 +1,12 @@
+At this time, this plugin was tested on Arch Linux with Plasma 5
+
+To install this plugin, you need before install plasma5, cmake and extra-cmake-modules.
+On Arch Linux :
+pacman -S --needed cmake extra-cmake-modules
+
+
+If install script is not executable, chmod it :
+chmod 755 install
+
+Then launch install script as user.
+./install
