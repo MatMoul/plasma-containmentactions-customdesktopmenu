@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Custom Desktop Menu
+Type=Service
+Icon=preferences-desktop-launch-feedback
+Comment=Custom Desktop Menu for Plasma 5
+
+ServiceTypes=Plasma/ContainmentActions
+
+X-KDE-Library=plasma_containmentactions_customdesktopmenu
+X-KDE-PluginInfo-Author=MatMoul
+X-KDE-PluginInfo-Email=
+X-KDE-PluginInfo-Name=customdesktopmenu
+X-KDE-PluginInfo-Version=pre0.1
+X-KDE-PluginInfo-Website=matmoul.github.io
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+
+X-Plasma-HasConfigurationInterface=true
