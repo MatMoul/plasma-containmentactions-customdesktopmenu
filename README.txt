@@ -1,3 +1,3 @@
 # plasma-containmentactions-customdesktopmenu
 
-Custom Desktop Menu for Plasm 5
+Custom Desktop Menu for Plasma 5
