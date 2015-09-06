@@ -1,0 +1,53 @@
+#!/bin/bash
+rm -R -f build
+mkdir build
+cd build
+
+installlibdir=$(dirname $(dirname $(find /usr -name plasma_containmentactions_applauncher.so)))
+
+cmake -DKDE_INSTALL_LIBDIR=$installlibdir ..
+#cmake -DKDE_INSTALL_LIBDIR=/usr/lib/qt ..
+if [ ! "$?" = "0" ]; then
+  echo ""
+  echo ""
+  echo "Error on cmake !"
+  echo "Stop install"
+  echo ""
+  echo "Have you installed cmake and extra-cmake-modules ?"
+  exit 1
+fi
+
+make
+if [ ! "$?" = "0" ]; then
+  echo ""
+  echo ""
+  echo "Error on make !"
+  echo "Stop install"
+  exit 1
+fi
+
+sudo make install
+if [ ! "$?" = "0" ]; then
+  echo ""
+  echo ""
+  echo "Error on make install !"
+  echo "Stop install"
+  exit 1
+fi
+
+cd ..
+
+kbuildsycoca5
+
+echo ""
+echo ""
+echo "Install Ready !"
+echo ""
+echo "If new menu is not available, logout your session."
+
+
+read -p "Logout now ? (Y/n)" choice
+case "$choice" in 
+  y|Y|'' ) qdbus-qt4 org.kde.ksmserver /KSMServer logout -1 0 3;;
+esac
+
