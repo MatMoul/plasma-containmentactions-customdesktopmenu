@@ -6,14 +6,17 @@ cd build
 installlibdir=$(dirname $(dirname $(find /usr -name plasma_containmentactions_applauncher.so)))
 
 cmake -DKDE_INSTALL_LIBDIR=$installlibdir ..
-#cmake -DKDE_INSTALL_LIBDIR=/usr/lib/qt ..
 if [ ! "$?" = "0" ]; then
   echo ""
   echo ""
   echo "Error on cmake !"
   echo "Stop install"
   echo ""
-  echo "Have you installed cmake and extra-cmake-modules ?"
+  echo "Have you installed dependencies ?"
+  echo "Arch Linux :"
+  echo "pacman -S --needed cmake extra-cmake-modules"
+  echo "OpenSuse :"
+  echo "zypper in cmake extra-cmake-modules libqt5-qtbase-devel plasma5-workspace-devel plasma-framework-devel kio-devel"
   exit 1
 fi
 
@@ -47,10 +50,10 @@ echo "Right click to your desktop and select Desktop Settings."
 echo "On mouse actions, you can now choose Custom Desktop Menu."
 echo ""
 echo "If new menu is not available, logout/login your session."
-
-
-#read -p "Logout now ? (Y/n)" choice
-#case "$choice" in 
-#  y|Y|'' ) qdbus-qt4 org.kde.ksmserver /KSMServer logout -1 0 3;;
-#esac
-
+echo ""
+echo "OpenSuse need this two commands to finish install :"
+echo "sudo mv /usr/local/share/kservices5/plasma-containmentactions-customdesktopmenu.desktop /usr/share/kservices5/plasma-containmentactions-customdesktopmenu.desktop"
+echo "kbuildsyscoca5"
+echo ""
+echo ""
+echo ""

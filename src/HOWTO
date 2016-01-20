@@ -1,8 +1,13 @@
-At this time, this plugin was tested on Arch Linux with Plasma 5
+At this time, this plugin was tested on Arch Linux and OpenSuse with Plasma 5
 
 To install this plugin, you need before install plasma5, cmake and extra-cmake-modules.
+
 On Arch Linux :
 pacman -S --needed cmake extra-cmake-modules
+
+On Suse :
+zypper in cmake extra-cmake-modules
+zypper in libqt5-qtbase-devel plasma5-workspace-devel plasma-framework-devel kio-devel
 
 
 If install script is not executable, chmod it :

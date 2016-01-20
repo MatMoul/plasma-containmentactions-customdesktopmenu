@@ -6,7 +6,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Widgets)
 find_package(ECM 1.8.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma KDELibs4Support)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS Plasma KIO)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
