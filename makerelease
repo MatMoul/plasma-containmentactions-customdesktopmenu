@@ -46,6 +46,7 @@ if [ ! "$branch" = "master" ]; then
   echo "Merge branch $branch to master..."
   git checkout master
   git merge $branch
+  git push
 fi
 
 read -p "Publish to server ? (Y/n)" choice
@@ -57,6 +58,7 @@ esac
 
 echo "Publish release..."
 #Github
+git tag -a "v${version}" -m "Version ${version}"
 git push --tags
 #Sourceforge :
 wget https://github.com/MatMoul/plasma-containmentactions-customdesktopmenu/archive/v${version}.tar.gz
