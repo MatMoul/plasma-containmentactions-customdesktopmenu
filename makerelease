@@ -1,8 +1,10 @@
 #!/bin/bash
 
-prjname=plasma-containmentactions-customdesktopmenu
-version=$(date +"%Y.%m.%d.%H.%M.%S")
-branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$1" == "" ]; then
+	echo "Error: No version provided"
+	echo "./makerelease 0.0.1"
+	exit 1
+fi
 
 ssh -T git@github.com
 if [ ! "$?" = "1" ]; then
@@ -10,13 +12,15 @@ if [ ! "$?" = "1" ]; then
   exit 1
 fi
 
-#scp "matmoul@web.sourceforge.net:/home/frs/project/$prjname/README.txt" /dev/null
-#if [ ! "$?" = "0" ]; then
-#  echo "No Sourceforge ssh key loaded exiting..."
-#  exit 1
-#fi
+scp "matmoul@web.sourceforge.net:/home/frs/project/plasma-custom-desktop-menu/README.txt" /dev/null
+if [ ! "$?" = "0" ]; then
+  echo "No Sourceforge ssh key loaded exiting..."
+  exit 1
+fi
 
 clear
+branch=$(git rev-parse --abbrev-ref HEAD)
+version=$1
 read -p "Current branch is $branch. Continue ? (y/N)" choice
 case "$choice" in 
   n|N|'' )
@@ -35,26 +39,13 @@ echo ""
 echo "Finalise lib script..."
 sed -i /X-KDE-PluginInfo-Version/c\X-KDE-PluginInfo-Version=$version src/plasma-containmentactions-customdesktopmenu.desktop
 
-echo "Make tar.gz file"
-cp -R src plasma-containmentactions-customdesktopmenu
-tar -zcvf releases/plasma-containmentactions-customdesktopmenu-$version.tar.gz plasma-containmentactions-customdesktopmenu/*
-git add releases/plasma-containmentactions-customdesktopmenu-$version.tar.gz
-rm -R plasma-containmentactions-customdesktopmenu
-
 echo "Make last commit..."
-git commit -a -m "New Release : $version"
+git commit -a -m "Version $version"
 
 if [ ! "$branch" = "master" ]; then
   echo "Merge branch $branch to master..."
   git checkout master
   git merge $branch
-
-  read -p "Delete branch $branch ? (y/N)" choice
-  case "$choice" in 
-    y|Y )
-      git branch -D $branch
-    ;;
-  esac
 fi
 
 read -p "Publish to server ? (Y/n)" choice
@@ -64,19 +55,13 @@ case "$choice" in
   ;;
 esac
 
-echo "Push release..."
-git push
-
-
-
-#Sourceforge :
-
 echo "Publish release..."
-scp -r releases/plasma-containmentactions-customdesktopmenu-$version.tar.gz matmoul@web.sourceforge.net:/home/frs/project/plasma-custom-desktop-menu/releases/
-
-
-
-
+#Github
+git push --tags
+#Sourceforge :
+wget https://github.com/MatMoul/plasma-containmentactions-customdesktopmenu/archive/v${version}.tar.gz
+scp -r v${version}.tar.gz matmoul@web.sourceforge.net:/home/frs/project/plasma-custom-desktop-menu/releases/
+rm v${version}.tar.gz
 
 if [ ! "$branch" = "master" ]; then
   git checkout $branch

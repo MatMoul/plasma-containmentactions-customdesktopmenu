@@ -3,7 +3,7 @@ rm -R -f build
 mkdir build
 cd build
 
-installlibdir=$(dirname $(dirname $(find /usr -name plasma_containmentactions_applauncher.so)))
+installlibdir=$(dirname $(find /usr -name plasma_containmentactions_contextmenu.so))
 
 cmake -DKDE_INSTALL_LIBDIR=$installlibdir ..
 if [ ! "$?" = "0" ]; then
